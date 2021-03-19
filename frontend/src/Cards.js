@@ -3,7 +3,7 @@ import TinderCard from 'react-tinder-card';
 import axios from './axios';
 import './Cards.css';
 
-function Cards() {git 
+function Cards() { 
     const [people, setPeople] = useState([]);
 
     useEffect(() => {
@@ -15,6 +15,8 @@ function Cards() {git
 
     fetchData();
     }, []) //runs the useEffect codes ONCE and never again
+
+    console.log(people);
 
     const swiped = (direction, nameToDelete) => {
         console.log("removing: " + nameToDelete);
@@ -37,7 +39,7 @@ function Cards() {git
                         onCardLeftScreen={()=> outOfFrame(person.name)}
                     >
                         <div
-                            style={{ backgroundImage: `url(${person.url})` }}
+                            style={{ backgroundImage: `url(${person.imgUrl})` }}
                             className="card"
                         >
                             <h3>{person.name}</h3>
