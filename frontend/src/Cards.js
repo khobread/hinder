@@ -1,19 +1,20 @@
-import { SwipeableDrawer } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TinderCard from 'react-tinder-card';
+import axios from './axios';
 import './Cards.css';
 
 function Cards() {git 
-    const [people, setPeople] = useState([
-        {
-            name: "Elon Musk",
-            url: "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
-        },
-        {
-            name: "Jeff Bezos",
-            url: "https://media.npr.org/assets/img/2021/02/03/gettyimages-1036084450_custom-3197c5129ae148db1fcfbe61201029dadae0af25-s800-c85.jpg",
-        },
-    ]);
+    const [people, setPeople] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const req = await axios.get('/hinder/cards');
+
+            setPeople(req.data);
+        }
+
+    fetchData();
+    }, []) //runs the useEffect codes ONCE and never again
 
     const swiped = (direction, nameToDelete) => {
         console.log("removing: " + nameToDelete);
